@@ -1,36 +1,35 @@
 import React from 'react';
 import Link from '@material-ui/core/Link';
-import {
-  useAppTranslation,
-  useLocalizedAsset
-} from 'Components/zume/translationHooks';
+import { useAppTranslation, useLocalizedAsset } from 'Components/zume/translationHooks';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { useTranspiler } from 'Components/zume/transpilerHooks';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   link: {
     color: theme.palette.primary.contrastText,
-    textDecoration: 'underline'
-  }
+    textDecoration: 'underline',
+  },
 }));
 
 export default function Description({ d }) {
   const trans = useAppTranslation();
   const asset = useLocalizedAsset();
   const classes = useStyles();
+  const transpile = useTranspiler();
 
   if (!d) {
     return null;
   }
   if (typeof d === 'string') {
-    return <p>{trans(d)}</p>;
+    return <p>{transpile(trans(d))}</p>;
   }
 
   // handles descriptions that are composed of arrays like ["first line", "second line"]
   function processArray(lines, i = 0) {
     return lines.map((l, j) => {
       if (typeof l === 'string') {
-        return <p key={`line-${i}-${j}`}>{trans(l)}</p>;
+        return <p key={`line-${i}-${j}`}>{transpile(trans(l))}</p>;
       }
       if (Array.isArray(l)) {
         return processArray(l, i + 1);
@@ -54,14 +53,7 @@ export default function Description({ d }) {
         }
         case 'image': {
           const { image, alt } = obj.payload;
-          return (
-            <img
-              key={domKey}
-              src={asset(image)}
-              alt={trans(alt)}
-              style={{ width: '100%' }}
-            />
-          );
+          return <img key={domKey} src={asset(image)} alt={trans(alt)} style={{ width: '100%' }} />;
         }
         case 'caption': {
           const { text } = obj.payload;
@@ -78,7 +70,7 @@ export default function Description({ d }) {
 
     return (
       <div key={`descriptionObj${i}`}>
-        {obj.t ? <h4>{trans(obj.t)}</h4> : null}
+        {obj.t ? <h4>{transpile(trans(obj.t))}</h4> : null}
         <Description d={obj.d} />
       </div>
     );
