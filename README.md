@@ -47,6 +47,8 @@ Local server
 
 ### 'firebase serve'
 
+## 'firebase deploy'
+
 
 ### `npm start`
 
