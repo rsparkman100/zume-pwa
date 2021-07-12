@@ -5,15 +5,15 @@ import HomeIcon from '@material-ui/icons/Home';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import TranslateIcon from '@material-ui/icons/TranslateOutlined';
 import RoutedBottomNavigation from '../shared/navigation/RoutedBottomNavigation';
-import {useAppTranslation, useLocalizedAsset} from 'Components/zume/translationHooks';
+import { useAppTranslation } from 'Components/zume/translationHooks';
 
 const classes = makeStyles({
   stickToBottom: {
     width: '100%',
     position: 'fixed',
     bottom: 0,
-    borderTop: '1px solid rgba(0, 0, 0, 0.12)'
-  }
+    borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+  },
 });
 
 export default function ZumeAppNavigation() {
@@ -22,30 +22,25 @@ export default function ZumeAppNavigation() {
     {
       label: trans('Home'),
       icon: <HomeIcon />,
-      path: '/'
+      path: '/',
     },
     {
       label: trans('About'),
       icon: <InfoOutlinedIcon />,
-      path: '/about'
+      path: '/about',
     },
     {
       label: trans('Account'),
       icon: <AccountCircleOutlinedIcon />,
-      path: '/menu'
+      path: '/menu',
     },
 
     {
       label: trans('Language'),
       icon: <TranslateIcon />,
-      path: '/language'
-    }
+      path: '/language',
+    },
   ];
 
-  return (
-    <RoutedBottomNavigation
-      actions={defaultActions}
-      className={classes().stickToBottom}
-    />
-  );
+  return <RoutedBottomNavigation actions={defaultActions} className={classes().stickToBottom} />;
 }

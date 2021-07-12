@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react';
  * A timer component that receives the number of minutes it should countdown from.
  * Internally, it counts down in seconds.
  */
-export default function({ minutes }) {
+export default function CountdownTimer({ minutes }) {
   let [remaining, setRemaining] = useState(minutes * 60);
   useEffect(() => {
     const interval = setInterval(() => {
-      setRemaining(remaining => remaining - 1);
+      setRemaining((remaining) => remaining - 1);
     }, 1000);
     return () => {
       clearInterval(interval);

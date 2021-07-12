@@ -1,2 +1,0 @@
-(this["webpackJsonpzume-pwa"]=this["webpackJsonpzume-pwa"]||[]).push([[27],{623:function(t,s,a){"use strict";a.r(s),s.default=a.p+"static/media/notes.c0b60a4f.txt"}}]);
-//# sourceMappingURL=27.25c06fa7.chunk.js.map
